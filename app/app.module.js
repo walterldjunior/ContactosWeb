@@ -16,7 +16,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 //import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService } from './in-memory-data.service';
 var app_component_1 = require("./app.component");
-//import { AppRoutingModule } from './app-routing.module';
+var app_routing_module_1 = require("./app-routing.module");
 var contatos_module_1 = require("./contatos/contatos.module");
 //import { DialogService } from './dialog.service';
 var AppModule = (function () {
@@ -27,7 +27,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            //AppRoutingModule,
+            app_routing_module_1.AppRoutingModule,
             platform_browser_1.BrowserModule,
             contatos_module_1.ContatosModule
         ],

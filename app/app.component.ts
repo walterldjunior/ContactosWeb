@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
     selector: 'my-app',
     template: `
     
-
-    <contatos-lista></contatos-lista>
+    <router-outlet></router-outlet>
+    
     `
 
 })

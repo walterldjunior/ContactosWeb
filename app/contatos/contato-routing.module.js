@@ -9,18 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var router_1 = require("@angular/router");
+var contatos_lista_component_1 = require("./contatos-lista.component");
+var contato_detalhe_component_1 = require("./contato-detalhe.component");
+var contatoRoutes = [
+    {
+        path: 'contato',
+        component: contatos_lista_component_1.ContatosListaComponent
+    },
+    {
+        path: 'contato/save',
+        component: contato_detalhe_component_1.ContatoDetalheComponent
     }
-    return AppComponent;
+];
+var ContatoRoutingModule = (function () {
+    function ContatoRoutingModule() {
+    }
+    return ContatoRoutingModule;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        //moduleId: module.id,
-        selector: 'my-app',
-        template: "\n    \n    <router-outlet></router-outlet>\n    \n    "
+ContatoRoutingModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            router_1.RouterModule.forChild(contatoRoutes)
+        ]
     }),
     __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], ContatoRoutingModule);
+exports.ContatoRoutingModule = ContatoRoutingModule;
+//# sourceMappingURL=contato-routing.module.js.map

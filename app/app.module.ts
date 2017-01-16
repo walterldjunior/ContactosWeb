@@ -9,13 +9,13 @@ import { BrowserModule } from '@angular/platform-browser';
 //import { InMemoryDataService } from './in-memory-data.service';
 
 import { AppComponent } from './app.component';
-//import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { ContatosModule } from './contatos/contatos.module';
 //import { DialogService } from './dialog.service';
 
 @NgModule({
     imports: [
-        //AppRoutingModule,
+        AppRoutingModule,
         BrowserModule,
         ContatosModule
         //FormsModule,

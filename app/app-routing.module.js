@@ -9,18 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
+var router_1 = require("@angular/router");
+var appRoutes = [
+    {
+        path: '',
+        redirectTo: '/contato',
+        pathMatch: 'full'
     }
-    return AppComponent;
+];
+var AppRoutingModule = (function () {
+    function AppRoutingModule() {
+    }
+    return AppRoutingModule;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        //moduleId: module.id,
-        selector: 'my-app',
-        template: "\n    \n    <router-outlet></router-outlet>\n    \n    "
+AppRoutingModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            router_1.RouterModule.forRoot(appRoutes)
+        ],
+        exports: [
+            router_1.RouterModule
+        ]
     }),
     __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], AppRoutingModule);
+exports.AppRoutingModule = AppRoutingModule;
+//# sourceMappingURL=app-routing.module.js.map
