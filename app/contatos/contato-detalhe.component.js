@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var contato_service_1 = require("./contato.service");
+var contato_model_1 = require("./contato.model");
 var ContatoDetalheComponent = (function () {
     function ContatoDetalheComponent(contatoService, route, location) {
         this.contatoService = contatoService;
@@ -21,11 +22,13 @@ var ContatoDetalheComponent = (function () {
     ContatoDetalheComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log('on init');
+        this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach(function (params) {
             var id = +params['id'];
             console.log(id);
             _this.contatoService.getContato(id)
                 .then(function (contato) {
+                _this.contato = contato;
                 console.log(contato);
             });
         });
