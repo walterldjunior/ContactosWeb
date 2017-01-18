@@ -17,6 +17,15 @@ export class ContatoService {
         return Promise.resolve(CONTATOS);
     }
 
+    getContato(id: number): Promise<Contato> {
+        return this.getContatos()
+        .then((contatos: Contato[]) => {
+            return contatos.find((contato) => {
+                return contato.id === id;
+            });
+        });
+    }
+
     // Chamada no servidor com latência alta.
     getContatosSlowly(): Promise<Contato[]> {
         return new Promise((resolve, reject) => {

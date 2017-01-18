@@ -19,10 +19,15 @@ var ContatoDetalheComponent = (function () {
         this.location = location;
     }
     ContatoDetalheComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log('on init');
         this.route.params.forEach(function (params) {
             var id = +params['id'];
             console.log(id);
+            _this.contatoService.getContato(id)
+                .then(function (contato) {
+                console.log(contato);
+            });
         });
     };
     return ContatoDetalheComponent;
