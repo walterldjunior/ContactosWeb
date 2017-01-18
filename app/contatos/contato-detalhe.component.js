@@ -9,9 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var common_1 = require("@angular/common");
+var contato_service_1 = require("./contato.service");
 var ContatoDetalheComponent = (function () {
-    function ContatoDetalheComponent() {
+    function ContatoDetalheComponent(contatoService, route, location) {
+        this.contatoService = contatoService;
+        this.route = route;
+        this.location = location;
     }
+    ContatoDetalheComponent.prototype.ngOnInit = function () {
+        console.log('on init');
+        this.route.params.forEach(function (params) {
+            var id = +params['id'];
+            console.log(id);
+        });
+    };
     return ContatoDetalheComponent;
 }());
 ContatoDetalheComponent = __decorate([
@@ -20,7 +33,9 @@ ContatoDetalheComponent = __decorate([
         selector: 'contato-detalhe',
         templateUrl: 'contato-detalhe.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [contato_service_1.ContatoService,
+        router_1.ActivatedRoute,
+        common_1.Location])
 ], ContatoDetalheComponent);
 exports.ContatoDetalheComponent = ContatoDetalheComponent;
 //# sourceMappingURL=contato-detalhe.component.js.map

@@ -16,6 +16,13 @@ var ContatoService = (function () {
     ContatoService.prototype.getContatos = function () {
         return Promise.resolve(contatos_mock_1.CONTATOS);
     };
+    // Chamada no servidor com latência alta.
+    ContatoService.prototype.getContatosSlowly = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            setTimeout(resolve, 3000);
+        }).then(function () { return _this.getContatos(); });
+    };
     return ContatoService;
 }());
 ContatoService = __decorate([
