@@ -17,7 +17,11 @@ export class ContatosListaComponent {
     constructor( private contatoService: ContatoService ){ }
     
     ngOnInit(): void {
-        this.contatos = this.contatoService.getContatos();
+        this.contatoService.getContatos()
+        .then((contato: Contato[]) => {
+            this.contatos = contato;
+        })
+        .catch(err => console.log(err))
     }
 
 }
