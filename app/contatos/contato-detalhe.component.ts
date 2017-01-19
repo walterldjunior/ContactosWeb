@@ -8,7 +8,10 @@ import { Contato } from './contato.model';
 @Component({
     moduleId: module.id,
     selector: 'contato-detalhe',
-    templateUrl: 'contato-detalhe.component.html'
+    templateUrl: 'contato-detalhe.component.html',
+    styleUrls: [
+        'contato-detalhe.component.css'
+    ]
 })
 export class ContatoDetalheComponent implements OnInit {
     
@@ -28,13 +31,13 @@ export class ContatoDetalheComponent implements OnInit {
         this.route.params.forEach((params: Params) => {
             let id: number = +params['id'];
 
-            console.log(id);
-
-            this.contatoService.getContato(id)
-            .then((contato: Contato) => {
-                this.contato = contato;
-                console.log(contato);
-            });
+            if(id){
+                this.contatoService.getContato(id)
+                .then((contato: Contato) => {
+                    this.contato = contato;
+                    console.log(contato);
+                });
+            }
         });
     }
 } 

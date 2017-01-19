@@ -25,12 +25,13 @@ var ContatoDetalheComponent = (function () {
         this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach(function (params) {
             var id = +params['id'];
-            console.log(id);
-            _this.contatoService.getContato(id)
-                .then(function (contato) {
-                _this.contato = contato;
-                console.log(contato);
-            });
+            if (id) {
+                _this.contatoService.getContato(id)
+                    .then(function (contato) {
+                    _this.contato = contato;
+                    console.log(contato);
+                });
+            }
         });
     };
     return ContatoDetalheComponent;
@@ -39,7 +40,10 @@ ContatoDetalheComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'contato-detalhe',
-        templateUrl: 'contato-detalhe.component.html'
+        templateUrl: 'contato-detalhe.component.html',
+        styleUrls: [
+            'contato-detalhe.component.css'
+        ]
     }),
     __metadata("design:paramtypes", [contato_service_1.ContatoService,
         router_1.ActivatedRoute,
