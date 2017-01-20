@@ -12,9 +12,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 //import { FormsModule } from '@angular/forms';
-//import { HttpModule } from '@angular/http';
-//import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-//import { InMemoryDataService } from './in-memory-data.service';
+var http_1 = require("@angular/http");
+var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
+var in_memory_data_service_1 = require("./in-memory-data.service");
 var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app-routing.module");
 var contatos_module_1 = require("./contatos/contatos.module");
@@ -29,7 +29,10 @@ AppModule = __decorate([
         imports: [
             app_routing_module_1.AppRoutingModule,
             platform_browser_1.BrowserModule,
-            contatos_module_1.ContatosModule
+            contatos_module_1.ContatosModule,
+            //FormsModule,
+            http_1.HttpModule,
+            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
         ],
         declarations: [app_component_1.AppComponent],
         //providers: [
