@@ -4,8 +4,9 @@ Small application of contact register web, using the following technologies:
 
 `AngularJs 2`
 
-`TypeScript 2.0`
+`typescript@2.1.5`
 
+`node@6.0.61`
 ### Important
 ***Application for technology study purposes!***
 
