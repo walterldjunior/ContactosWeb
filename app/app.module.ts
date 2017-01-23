@@ -20,7 +20,7 @@ import { ContatosModule } from './contatos/contatos.module';
         ContatosModule,
         //FormsModule,
         HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
+        InMemoryWebApiModule.forRoot(InMemoryDataService)
     ],
     declarations: [AppComponent],
     //providers: [
