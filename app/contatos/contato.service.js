@@ -15,12 +15,21 @@ var ContatoService = (function () {
     function ContatoService(http) {
         this.http = http;
         this.contatosUrl = 'app/contatos';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
+    ContatoService.prototype.create = function (contato) {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(function (response) {
+            return response.json().data;
+        })
+            .catch(this.handleError);
+    };
     ContatoService.prototype.getContatos = function () {
         return this.http.get(this.contatosUrl)
             .toPromise()
-            .then(function (response) { return response.json().data; });
-        //return Promise.resolve(CONTATOS);
+            .then(function (response) { return response.json().data; })
+            .catch(this.handleError);
     };
     ContatoService.prototype.getContato = function (id) {
         return this.getContatos()
@@ -29,6 +38,9 @@ var ContatoService = (function () {
                 return contato.id === id;
             });
         });
+    };
+    ContatoService.prototype.handleError = function (err) {
+        return Promise.reject(err.message || err);
     };
     // Chamada no servidor com latência alta.
     ContatoService.prototype.getContatosSlowly = function () {

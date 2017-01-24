@@ -51,12 +51,16 @@ var ContatoDetalheComponent = (function () {
         };
     };
     ContatoDetalheComponent.prototype.onSubmit = function () {
+        var _this = this;
+        var promise;
         if (this.isNew) {
             console.log("Cadastrar novo contato!");
+            promise = this.contatoService.create(this.contato);
         }
         else {
             console.log("Alterar contato!");
         }
+        promise.then(function (contato) { return _this.location.back(); });
     };
     return ContatoDetalheComponent;
 }());

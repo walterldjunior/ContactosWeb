@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -12,16 +12,29 @@ import { CONTATOS } from './contatos-mock';
 export class ContatoService {
 
     private contatosUrl: string = 'app/contatos';
+    private headers: Headers = new Headers({'Content-Type': 'application/json'});
 
     constructor(
-        private http: Http
-    ){}
+        private http: Http  
+    ){
+
+    }
+    
+    create(contato: Contato): Promise<Contato> {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), {headers: this.headers})
+            .toPromise()
+            .then((response: Response) => {
+                return response.json().data as Contato;
+            })
+            .catch(this.handleError);
+    }
 
     getContatos(): Promise<Contato[]> {
         return this.http.get(this.contatosUrl)
-        .toPromise()
-        .then(response => response.json().data as Contato[]);
-        //return Promise.resolve(CONTATOS);
+            .toPromise()
+            .then(response => response.json().data as Contato[])
+            .catch(this.handleError);
+        
     }
 
     getContato(id: number): Promise<Contato> {
@@ -31,6 +44,10 @@ export class ContatoService {
                 return contato.id === id;
             });
         });
+    }
+
+    private handleError(err: any): Promise<any> {
+        return Promise.reject(err.message || err);
     }
 
     // Chamada no servidor com latência alta.

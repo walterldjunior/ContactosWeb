@@ -20,7 +20,9 @@ var ContatosListaComponent = (function () {
             .then(function (contato) {
             _this.contatos = contato;
         })
-            .catch(function (err) { return console.log(err); });
+            .catch(function (err) {
+            console.log('Aconteceu um erro: ', err);
+        });
     };
     return ContatosListaComponent;
 }());
