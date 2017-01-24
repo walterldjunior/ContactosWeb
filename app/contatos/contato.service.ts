@@ -29,6 +29,16 @@ export class ContatoService {
             .catch(this.handleError);
     }
 
+    update(contato: Contato): Promise<Contato>{
+        const url = `${this.contatosUrl}/${contato.id}`;
+
+        return this.http
+        .put(url, JSON.stringify(contato), {headers: this.headers})
+        .toPromise()
+        .then(() => contato as Contato)
+        .catch(this.handleError);
+    }
+
     getContatos(): Promise<Contato[]> {
         return this.http.get(this.contatosUrl)
             .toPromise()

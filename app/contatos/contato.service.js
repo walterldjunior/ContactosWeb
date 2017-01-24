@@ -25,6 +25,14 @@ var ContatoService = (function () {
         })
             .catch(this.handleError);
     };
+    ContatoService.prototype.update = function (contato) {
+        var url = this.contatosUrl + "/" + contato.id;
+        return this.http
+            .put(url, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(function () { return contato; })
+            .catch(this.handleError);
+    };
     ContatoService.prototype.getContatos = function () {
         return this.http.get(this.contatosUrl)
             .toPromise()
