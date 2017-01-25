@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges, SimpleChange } from '@angular/core';
+
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -11,14 +13,16 @@ import { ContatoService } from './contato.service';
     selector: 'contato-busca',
     templateUrl: 'contato-busca.component.html'
 })
-export class ContatoBuscaComponent implements OnInit {
+export class ContatoBuscaComponent implements OnInit, OnChanges {
 
-    constructor(
-        private contatoService: ContatoService
-    ) { }
-
+    @Input() busca: string;
     contatos: Observable<Contato[]>;
     private termoDaBusca: Subject<string> = new Subject<string>();
+
+    constructor(
+        private contatoService: ContatoService,
+        private route: Router
+    ) { }
 
     ngOnInit(): void { 
         this.contatos = this.termoDaBusca
@@ -38,7 +42,17 @@ export class ContatoBuscaComponent implements OnInit {
         })
     }
 
+    ngOnChanges(changes: SimpleChanges): void {
+        let busca: SimpleChange = changes['busca'];
+        this.search(busca.currentValue);
+    }
+
     search(termo: string): void {
         this.termoDaBusca.next(termo);
+    }
+
+    verDetalhes(contato: Contato): void {
+        let link = ['contato/save', contato.id];
+        this.router.navigate(link);
     }
 }
