@@ -13,7 +13,7 @@ import { DialogService } from './../dialog.service';
 })
 export class ContatosListaComponent {
 
-    contatos: Contato[];
+    contatos: Contato[] = [];
     mensagem: {};
     classesCss: {};
     private currentTimeout: any;
