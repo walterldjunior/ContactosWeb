@@ -9,4 +9,8 @@ export class ContatoBuscaComponent implements OnInit {
     constructor() { }
 
     ngOnInit() { }
+
+    search(termo: string): void {
+        console.log(termo);
+    }
 }

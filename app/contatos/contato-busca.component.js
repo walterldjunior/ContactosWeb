@@ -13,6 +13,9 @@ var ContatoBuscaComponent = (function () {
     function ContatoBuscaComponent() {
     }
     ContatoBuscaComponent.prototype.ngOnInit = function () { };
+    ContatoBuscaComponent.prototype.search = function (termo) {
+        console.log(termo);
+    };
     return ContatoBuscaComponent;
 }());
 ContatoBuscaComponent = __decorate([
