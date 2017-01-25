@@ -9,12 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var Observable_1 = require("rxjs/Observable");
+var Subject_1 = require("rxjs/Subject");
+var contato_service_1 = require("./contato.service");
 var ContatoBuscaComponent = (function () {
-    function ContatoBuscaComponent() {
+    function ContatoBuscaComponent(contatoService) {
+        this.contatoService = contatoService;
+        this.termoDaBusca = new Subject_1.Subject();
     }
-    ContatoBuscaComponent.prototype.ngOnInit = function () { };
+    ContatoBuscaComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.contatos = this.termoDaBusca
+            .switchMap(function (term) {
+            console.log('Fez a busca', term);
+            return term ? _this.contatoService.search(term) : Observable_1.Observable.of([]);
+        });
+        this.contatos.subscribe(function (contatos) {
+            console.log('Retornou do servidor', contatos);
+        });
+    };
     ContatoBuscaComponent.prototype.search = function (termo) {
-        console.log(termo);
+        this.termoDaBusca.next(termo);
     };
     return ContatoBuscaComponent;
 }());
@@ -24,7 +39,7 @@ ContatoBuscaComponent = __decorate([
         selector: 'contato-busca',
         templateUrl: 'contato-busca.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [contato_service_1.ContatoService])
 ], ContatoBuscaComponent);
 exports.ContatoBuscaComponent = ContatoBuscaComponent;
 //# sourceMappingURL=contato-busca.component.js.map
