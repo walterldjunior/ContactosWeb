@@ -20,9 +20,15 @@ var ContatoBuscaComponent = (function () {
     ContatoBuscaComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.contatos = this.termoDaBusca
+            .debounceTime(500) //aguarda 500ms para realizar uma nova busca (evento).
+            .distinctUntilChanged() //ignore se o próximo da busca for igual ao anterior.
             .switchMap(function (term) {
             console.log('Fez a busca', term);
             return term ? _this.contatoService.search(term) : Observable_1.Observable.of([]);
+        })
+            .catch(function (err) {
+            console.log();
+            return Observable_1.Observable.of([]);
         });
         this.contatos.subscribe(function (contatos) {
             console.log('Retornou do servidor', contatos);

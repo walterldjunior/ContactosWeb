@@ -11,12 +11,11 @@
                     #searchBox
                     (keyup)="search(searchBox.value)">
             </div>
-<!--
-    [ngModel]="busca" (ngModelChange)="search($event)" 
+  <!--  [ngModel]="busca" (ngModelChange)="search($event)" -->
             <ul class="list-group">
-                <li class="list-group-item cursor-pointer" *ngFor="let c of contatos | async" (click)="verDetalhe(c)">{{ c.nome }}</li>
+                <li class="list-group-item cursor-pointer" *ngFor="let c of contatos | async" 
+                (click)="verDetalhe(c)">{{ c.nome }}</li>
             </ul>
--->
         </div>
     </div>
 
